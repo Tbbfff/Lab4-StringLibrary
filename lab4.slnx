@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="StringLibrary/StringLibrary.csproj" />
+  <Project Path="StringLibraryConsumer/StringLibraryConsumer.csproj" />
+</Solution>
