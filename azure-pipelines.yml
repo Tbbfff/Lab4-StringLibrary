@@ -23,7 +23,7 @@ steps:
       command: 'restore'
       projects: '**/*.csproj'
       feedsToUse: 'select'
-      vstsFeed: 'Lab4Feed'
+      vstsFeed: 'Lab4/Lab4Feed'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
@@ -46,4 +46,4 @@ steps:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
       nuGetFeedType: 'internal'
-      publishVstsFeed: 'Lab4Feed'
+      publishVstsFeed: 'Lab4/Lab4Feed'
