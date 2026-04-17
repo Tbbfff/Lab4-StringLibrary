@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "ShowCase/1.0.0": {
+        "dependencies": {
+          "StringLibrary": "1.0.6"
+        },
+        "runtime": {
+          "ShowCase.dll": {}
+        }
+      },
+      "StringLibrary/1.0.6": {
+        "runtime": {
+          "lib/net8.0/StringLibrary.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ShowCase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StringLibrary/1.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wU1ULOPeBxc5yCEaaVnvpiQ/t4tX2fzncHpM5vKJ38H8PzmaURfQH046J/qRwKCPWGjeG2DEPdSRvTk+wuX/0w==",
+      "path": "stringlibrary/1.0.6",
+      "hashPath": "stringlibrary.1.0.6.nupkg.sha512"
+    }
+  }
+}
