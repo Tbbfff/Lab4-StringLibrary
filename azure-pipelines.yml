@@ -1,0 +1,49 @@
+trigger:
+  - main
+
+pool:
+  name: Default  # your self-hosted agent pool name
+
+variables:
+  buildConfiguration: 'Release'
+  majorMinorVersion: '1.0'
+  patchVersion: $[counter(variables['majorMinorVersion'], 0)]
+  packageVersion: '$(majorMinorVersion).$(patchVersion)'
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET 8'
+    inputs:
+      packageType: 'sdk'
+      version: '8.x'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore'
+    inputs:
+      command: 'restore'
+      projects: '**/*.csproj'
+      feedsToUse: 'select'
+      vstsFeed: 'StringLibraryFeed'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Pack NuGet package'
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/*.csproj'
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'packageVersion'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Push to Artifacts Feed'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: 'StringLibraryFeed'
